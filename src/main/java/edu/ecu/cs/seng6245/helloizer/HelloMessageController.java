@@ -22,12 +22,15 @@ public class HelloMessageController {
     // Template for formatting the message text for each message
     private static final String messageTemplate = "Hello, %s it is %s";
 
+    // TODO: Fix the name computation
+
     @RequestMapping("/hello")
     public HelloMessage sayHello(@RequestParam(value="name", defaultValue = "") String name) {
         Date now = new Date();
         UUID messageId = UUID.randomUUID();
         String messageText = String.format(messageTemplate,
-                name.trim().length() == 0 ? "anonymous person" : name.trim(),
+                name.trim(),
+//                name.trim().length() == 0 ? "anonymous person" : name.trim(),
                 now.toString());
         return new HelloMessage(messageId, messageText, now);
     }
